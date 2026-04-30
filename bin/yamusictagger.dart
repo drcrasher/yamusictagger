@@ -37,10 +37,6 @@ void printUsage(ArgParser argParser) {
 }
 
 void main(List<String> arguments) {
-  // arguments =
-  //     r"-m C:\Users\sergo\AppData\Local\Packages\A025C540.Yandex.Music_vfvw9svesycw6\LocalState\Music\dd5483096ec09fe9f157f4c4709ab248 -d C:\Users\sergo\AppData\Local\Packages\A025C540.Yandex.Music_vfvw9svesycw6\LocalState\musicdb_dd5483096ec09fe9f157f4c4709ab248.sqlite -o E:\dwnlds\_mp3\ya.mu"
-  //         .split(" ");
-  // arguments = r"-a -o E:\dwnlds\_mp3\ya.mu".split(" ");
   final ArgParser argParser = buildParser();
   try {
     final ArgResults results = argParser.parse(arguments);

@@ -1,1 +1,4 @@
-A sample command-line application providing basic argument parsing with an entrypoint in `bin/`.
+### Yandex.Music tagger
+
+CLI application to extract saved music from Yandex.Music's cache.
+
