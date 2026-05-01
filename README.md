@@ -1,4 +1,15 @@
-### Yandex.Music tagger
+# Yandex.Music tagger
 
-CLI application to extract saved music from Yandex.Music's cache.
+Консольное приложение для копирования кэшированных mp3-файлов Яндекс.Музыки с переименованием файлов и расстановкой тегов.
+
+## Релиз 0.0.1
+Приложения [версия 0.0.1 для windows-x64](https://github.com/drcrasher/yamusictagger/blob/main/release/ymt_win_x64.zip)
+
+Использование:
+
+`C:\path\to\ymt\bin\yamusictagger.exe -a -o D:\path\to\your\music\library`
+
+Ключ `-a (--auto)` даёт возможность приложению самостоятельно найти расположение нужных директорий/файлов.
+
+Дополнительные ключи `-m (--yapath)` и `-d (--yadb)` можно использовать для ручного указания путей к директории с mp3 и базе данных.
 
