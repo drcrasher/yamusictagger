@@ -7,7 +7,12 @@
         {
             "name": "yamusictagger",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "-a",
+                "-o",
+                "e:\\dwnlds\\_mp3\\ya.mu"
+            ]
         }
     ]
 }

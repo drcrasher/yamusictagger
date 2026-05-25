@@ -3,7 +3,7 @@ import 'dart:io' show Directory, Platform;
 import 'package:args/args.dart';
 import 'package:yamusictagger/tagger.dart';
 
-const String version = '0.0.1';
+const String version = '0.0.2';
 
 ArgParser buildParser() {
   return ArgParser()
@@ -38,6 +38,7 @@ void printUsage(ArgParser argParser) {
 
 void main(List<String> arguments) {
   final ArgParser argParser = buildParser();
+
   try {
     final ArgResults results = argParser.parse(arguments);
     bool verbose = false;

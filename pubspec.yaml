@@ -1,15 +1,16 @@
 name: yamusictagger
 description: A sample command-line application with basic argument parsing.
-version: 0.0.1
+version: 0.0.2
 # repository: https://github.com/my_org/my_repo
+publish_to: none
 
 environment:
-  sdk: ^3.11.5
+  sdk: ^3.12.0
 
 # Add regular dependencies here.
 dependencies:
   args: ^2.7.0
-  eztags: ^1.0.2
+
   ini: ^2.1.0
   sqlite3: ^3.3.1
 

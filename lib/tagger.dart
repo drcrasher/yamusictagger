@@ -1,7 +1,8 @@
 import 'dart:io';
 
-import 'package:eztags/eztags.dart';
 import 'package:sqlite3/sqlite3.dart';
+
+import 'eztags/eztags.dart';
 
 class Tagger {
   final String yaSource;
@@ -94,7 +95,8 @@ class Tagger {
         (row) => row.map(
           (key, value) => MapEntry(
             key,
-            value.toString().replaceAll(RegExp(r'[^a-zA-Z0-9а-яА-ЯйЙ]'), ' '),
+            value ??
+                "[unknown]", //   value.toString().replaceAll(RegExp(r'[^a-zA-Z0-9а-яА-ЯйЙ]'), ' '),
           ),
         ),
       ),
@@ -115,17 +117,33 @@ class Tagger {
     id3['artist'] = id3['artist']!.split(',').toSet().toList().join(', ');
     final tagList = TagList.fromMap(id3);
 
-    String newFName =
-        "${id3['artist']} - ${id3['title']} (${id3['album'] ?? ""})";
+    String newFName = toSafeFilename(
+      "${id3['artist']} - ${id3['title']} (${id3['album'] ?? ""})",
+    );
 
     stdout.write('writing to $newFName');
     newFName = "${_target!.path}\\$newFName.mp3";
 
-    File(f).copySync(newFName);
+    try {
+      File(f).copySync(newFName);
 
-    await addTagsToFile(tagList, newFName);
+      await addTagsToFile(tagList, newFName);
+      stdout.writeln(" complete.");
+    } catch (e) {
+      stdout.writeln(" failed. Error: $e");
+    }
+  }
 
-    stdout.writeln(" complete.");
+  String toSafeFilename(String input) {
+    // 1. Replace characters that are invalid on most file systems
+    // Includes: < > : " / \ | ? * and any control characters
+    String safe = input.replaceAll(RegExp(r'[<>:"/\\|?*\x00-\x1F]'), '_');
+
+    // 2. Remove leading/trailing dots and spaces (problematic on Windows)
+    safe = safe.trim().replaceAll(RegExp(r'[. ]+$'), '');
+
+    // 3. Fallback for empty strings or purely invalid input
+    return safe.isEmpty ? 'unnamed_file' : safe;
   }
 
   final String _sql = '''
