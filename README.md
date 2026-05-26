@@ -5,13 +5,14 @@
 [Архив релизов](https://github.com/drcrasher/yamusictagger/tree/main/release)
 
 ## Версия 0.0.2
+Приложениe [версия 0.0.2 для windows-x64](https://github.com/drcrasher/yamusictagger/blob/main/release/ymt_win_x64_0.0.2.zip)
 Реализована нормальная поддержка тегов в utf8.
 Исправлена ошибка формирования имён файлов со служебными символами.
 
-Релиз 
+
 
 ## Релиз 0.0.1
-Приложения [версия 0.0.1 для windows-x64](https://github.com/drcrasher/yamusictagger/blob/main/release/ymt_win_x64_0.0.1.zip)
+Приложениe [версия 0.0.1 для windows-x64](https://github.com/drcrasher/yamusictagger/blob/main/release/ymt_win_x64_0.0.1.zip)
 
 Использование:
 
