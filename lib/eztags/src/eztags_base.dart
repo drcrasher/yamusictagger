@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:convert';
-// import 'imagedl.dart';
+import 'imagedl.dart';
 
 import 'bytestuff.dart';
 
@@ -150,28 +150,22 @@ class Tag {
   Uint8List _textFrame(String data) =>
       _makeFrame(type.code, [0x00] + latin1.encode(data));
 
-  Uint8List _utfFrame(String data) => _makeFrame(type.code, [
-    0x03,
-    // 0xff,
-    // 0xfe,
-    ...utf8.encode(data),
-    0x00,
-    // 0x00,
-  ]);
+  Uint8List _utfFrame(String data) =>
+      _makeFrame(type.code, [0x03, ...utf8.encode(data), 0x00]);
 
-  // Uint8List _picFrame(Image image) {
-  //   final descriptionBin = latin1.encode("Artwork");
-  //   final bin = Uint8List.fromList(
-  //     [0x00] + // uses ISO-8859 encoding
-  //         latin1.encode(image.mimetype) +
-  //         [0x00] +
-  //         [0x03] + // cover (front)
-  //         descriptionBin +
-  //         [0x00] +
-  //         image.binary,
-  //   );
-  //   return _makeFrame(type.code, bin);
-  // }
+  Uint8List _picFrame(Image image) {
+    final descriptionBin = latin1.encode("Artwork");
+    final bin = Uint8List.fromList(
+      [0x00] + // uses ISO-8859 encoding
+          latin1.encode(image.mimetype) +
+          [0x00] +
+          [0x03] + // cover (front)
+          descriptionBin +
+          [0x00] +
+          image.binary,
+    );
+    return _makeFrame(type.code, bin);
+  }
 
   /// Returns the binary representation of a frame.
   ///
@@ -189,7 +183,7 @@ class Tag {
       case TagType.genre:
         return _textFrame(_toTitleCase(data));
       case TagType.artwork:
-        return Uint8List(0); //_picFrame(await downloadImage(data));
+        return _picFrame(await downloadImage(data));
     }
   }
 }
